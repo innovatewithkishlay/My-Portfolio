@@ -5,6 +5,15 @@ import { FaCertificate } from "react-icons/fa";
 const Certificates = () => {
   const certificates = [
     {
+      title: "Introduction To Internet Of Things ",
+      description:
+        "Completed an in-depth course on networking concepts including protocols, OSI layers, and real-world applications.",
+      tags: ["NPTEL"],
+      link: "https://drive.google.com/file/d/1rnXc6F6eRMci-RmdO632mVtKRLFsRHRz/view?usp=drive_link",
+      iconColor: "text-purple-600",
+      buttonColor: "bg-purple-600 hover:bg-purple-700",
+    },
+    {
       title: "Approximation Algorithms and Linear Programming",
       description:
         "Successfully completed this course, gaining knowledge of algorithm optimization techniques and linear programming fundamentals.",
@@ -28,15 +37,6 @@ const Certificates = () => {
         "Completed an in-depth course on networking concepts including protocols, OSI layers, and real-world applications.",
       tags: ["Udemy", "Online Learning", "Skill Development"],
       link: "https://drive.google.com/file/d/1MpXLSjROLmMNxphvjKGf1mVtX6RmDzVW/view?usp=drivesdk",
-      iconColor: "text-purple-600",
-      buttonColor: "bg-purple-600 hover:bg-purple-700",
-    },
-    {
-      title: "Introduction To Internet Of Things ",
-      description:
-        "Completed an in-depth course on networking concepts including protocols, OSI layers, and real-world applications.",
-      tags: ["NPTEL"],
-      link: "https://drive.google.com/file/d/1rnXc6F6eRMci-RmdO632mVtKRLFsRHRz/view?usp=drive_link",
       iconColor: "text-purple-600",
       buttonColor: "bg-purple-600 hover:bg-purple-700",
     },
