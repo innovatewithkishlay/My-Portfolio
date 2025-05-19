@@ -5,10 +5,10 @@ import { FaCertificate } from "react-icons/fa";
 const Certificates = () => {
   const certificates = [
     {
-      title: "Introduction To Internet Of Things ",
+      title: "NPTEL: Introduction to Internet of Things",
       description:
-        "Completed an in-depth course on networking concepts including protocols, OSI layers, and real-world applications.",
-      tags: ["NPTEL"],
+        "Successfully completed the NPTEL course on IoT, covering IoT architecture, protocols, applications, and hands-on projects.",
+      tags: ["NPTEL", "Completion", "IoT"],
       link: "https://drive.google.com/file/d/1rnXc6F6eRMci-RmdO632mVtKRLFsRHRz/view?usp=drive_link",
       iconColor: "text-purple-600",
       buttonColor: "bg-purple-600 hover:bg-purple-700",
