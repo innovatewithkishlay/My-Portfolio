@@ -90,16 +90,11 @@ const Contact = () => {
             viewport={{ margin: "0px 0px -25% 0px" }}
           >
             <form
-              action="https://api.web3forms.com/submit"
+              action="https://formspree.io/f/meogdozn"
               method="POST"
               className="space-y-6"
+              acceptCharset="UTF-8"
             >
-              <input
-                type="hidden"
-                name="access_key"
-                value="cd1175c4-c526-4153-8e14-49100a4d8523"
-              />
-
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <motion.div
                   whileHover={{ scale: 1.02 }}
