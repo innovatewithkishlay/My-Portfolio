@@ -9,7 +9,7 @@ const Certificates = () => {
       description:
         "Successfully completed the NPTEL course on IoT, covering IoT architecture, protocols, applications, and hands-on projects.",
       tags: ["NPTEL", "Completion", "IoT"],
-      link: "https://drive.google.com/file/d/1rnXc6F6eRMci-RmdO632mVtKRLFsRHRz/view?usp=drive_link",
+      link: "https://drive.google.com/file/d/1rnXc6F6eRMci-RmdO632mVtKRLFsRHRz/view?usp=sharing",
       iconColor: "text-cyan-500",
       buttonColor: "bg-cyan-600 hover:bg-cyan-700",
     },
