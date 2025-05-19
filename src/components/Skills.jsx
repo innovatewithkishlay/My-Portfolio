@@ -36,7 +36,7 @@ const skillsData = [
     title: "Soft Skills",
     icon: <FiUsers />,
     skills: "Problem-Solving, Teamwork, Leadership, Adaptability",
-    level: 75,
+    level: 88, // Changed to 88%
     color: "#059669",
   },
 ];
@@ -181,12 +181,12 @@ const SkillsSection = () => {
                 {skill.title}
               </h3>
 
-              {/* Skills Tags */}
+              {/* Skills Tags - Uniform #EFF6FF background */}
               <div className="flex flex-wrap justify-center gap-2">
                 {skill.skills.split(", ").map((item, idx) => (
                   <motion.div
                     key={idx}
-                    className="px-3 py-1.5 rounded-full bg-gray-100 border border-gray-200 text-gray-700 hover:bg-blue-50 hover:border-blue-200 hover:text-blue-700 transition-colors text-sm"
+                    className="px-3 py-1.5 rounded-full bg-blue-50 border border-gray-200 text-gray-700 hover:bg-blue-100 hover:border-blue-200 hover:text-blue-700 transition-colors text-sm"
                     whileHover={{ scale: 1.05 }}
                     transition={{ duration: 0.2 }}
                   >
