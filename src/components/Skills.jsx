@@ -1,190 +1,237 @@
 import React from "react";
-import { motion } from "framer-motion";
-import {
-  FaCode,
-  FaReact,
-  FaTools,
-  FaBookOpen,
-  FaUserFriends,
-} from "react-icons/fa";
+import { motion, useScroll, useTransform } from "framer-motion";
+import { FiCode, FiCpu, FiDatabase, FiBook, FiUsers } from "react-icons/fi";
+import { TbBrandReact, TbTool } from "react-icons/tb";
 
 const skillsData = [
   {
     title: "Languages",
-    icon: <FaCode />,
+    icon: <FiCode />,
     skills: "C++, C, Java, Python, JavaScript, PHP",
-    width: "95%",
+    level: 95,
+    color: "#60a5fa",
   },
   {
     title: "Frameworks",
-    icon: <FaReact />,
+    icon: <TbBrandReact />,
     skills: "Node.js, Express.js, Tailwind CSS, React.js",
-    width: "90%",
+    level: 90,
+    color: "#38bdf8",
   },
   {
-    title: "Tools / Platforms",
-    icon: <FaTools />,
+    title: "Tools/Platforms",
+    icon: <TbTool />,
     skills: "MySQL, MongoDB, Git, GitHub",
-    width: "85%",
+    level: 85,
+    color: "#818cf8",
   },
   {
     title: "Coursework",
-    icon: <FaBookOpen />,
-    skills:
-      "DSA, Operating System, DBMS, Computer Networking, Probability & Statistics",
-    width: "80%",
+    icon: <FiBook />,
+    skills: "DSA, OS, DBMS, Networking, Probability & Stats",
+    level: 80,
+    color: "#f472b6",
   },
   {
     title: "Soft Skills",
-    icon: <FaUserFriends />,
-    skills: "Problem-Solving, Team Player, Project Management, Adaptability",
-    width: "75%",
+    icon: <FiUsers />,
+    skills: "Problem-Solving, Teamwork, Leadership, Adaptability",
+    level: 75,
+    color: "#34d399",
   },
 ];
 
 const SkillsSection = () => {
-  return (
-    <section
-      id="skills"
-      className="relative py-24 bg-gradient-to-br from-white to-gray-100 overflow-hidden"
-    >
-      {/* Simplified Animated Background */}
-      <div className="absolute inset-0 bg-grid-slate-700/10" />
+  const { scrollYProgress } = useScroll();
+  const rotate = useTransform(scrollYProgress, [0, 1], [0, 360]);
 
-      {/* Optimized Floating Particles */}
-      {[...Array(10)].map((_, i) => (
+  return (
+    <section className="relative min-h-screen py-24 bg-gradient-to-br from-slate-900 to-slate-800 overflow-hidden">
+      {/* Dynamic Gradient Background */}
+      <motion.div
+        className="absolute inset-0 opacity-20"
+        style={{
+          background: `radial-gradient(circle at 50% 50%, 
+            rgba(96,165,250,0.3) 0%, 
+            rgba(56,189,248,0.2) 30%, 
+            rgba(129,140,248,0.1) 60%, 
+            transparent 100%)`,
+          rotate,
+        }}
+      />
+
+      {/* Floating Particles */}
+      {[...Array(15)].map((_, i) => (
         <motion.div
           key={i}
-          className="absolute w-1 h-1 bg-blue-400 rounded-full backface-hidden"
-          initial={{ scale: 0 }}
-          animate={{ scale: [0, 1, 0] }}
+          className="absolute w-2 h-2 bg-blue-400/20 rounded-full"
+          initial={{
+            scale: 0,
+            x: Math.random() * 100 - 50,
+            y: Math.random() * 100 - 50,
+          }}
+          animate={{
+            scale: [0, 1, 0],
+            x: [
+              Math.random() * 100 - 50,
+              Math.random() * 200 - 100,
+              Math.random() * 100 - 50,
+            ],
+            y: [
+              Math.random() * 100 - 50,
+              Math.random() * 200 - 100,
+              Math.random() * 100 - 50,
+            ],
+          }}
           transition={{
-            duration: Math.random() * 3 + 2,
+            duration: Math.random() * 4 + 4,
             repeat: Infinity,
-            delay: Math.random(),
+            ease: "easeInOut",
           }}
         />
       ))}
 
       {/* Section Heading */}
-      <div className="relative z-10 container mx-auto px-6 mb-16">
+      <div className="relative z-10 container mx-auto px-4 lg:px-8 mb-20">
         <motion.div
-          className="max-w-4xl ml-auto"
-          initial={{ opacity: 0, x: 100 }}
-          whileInView={{ opacity: 1, x: 0 }}
+          className="max-w-2xl mx-auto text-center"
+          initial={{ opacity: 0, y: 50 }}
+          whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
           viewport={{ once: true, margin: "0px 0px -25% 0px" }}
         >
-          <h2 className="text-4xl md:text-6xl font-bold text-right mb-4 bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent">
-            Technical Arsenal
-          </h2>
-          <motion.div
-            className="h-1 bg-gradient-to-l from-blue-400 to-transparent ml-auto max-w-xs"
-            initial={{ width: 0 }}
-            whileInView={{ width: "100%" }}
-            transition={{ duration: 1.2, ease: "easeInOut" }}
-            viewport={{ once: true }}
-          />
+          <motion.span
+            className="text-sm font-semibold tracking-widest text-blue-400 uppercase"
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            transition={{ delay: 0.2 }}
+          >
+            Technical Expertise
+          </motion.span>
+          <motion.h2
+            className="text-5xl md:text-6xl font-bold mt-4 bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.4 }}
+          >
+            Code & Craft
+          </motion.h2>
         </motion.div>
       </div>
 
-      {/* Optimized Skills Grid */}
-      <div className="relative z-10 container mx-auto px-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      {/* Skills Grid */}
+      <div className="relative z-10 container mx-auto px-4 lg:px-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
         {skillsData.map((skill, index) => (
           <motion.div
             key={index}
-            className="group relative bg-white/80 backdrop-blur-sm rounded-2xl p-6 shadow-lg hover:shadow-xl transition-all border border-slate-200 overflow-hidden backface-hidden"
-            initial={{ opacity: 0, y: 50 }}
-            whileInView={{ opacity: 1, y: 0 }} // Animate on entering view
-            transition={{
-              duration: 0.6,
-              delay: index * 0.1,
-              ease: "easeOut",
-            }}
-            viewport={{ once: false, margin: "0px 0px -25% 0px" }} // Trigger on re-entering
+            className="group relative bg-slate-800/50 backdrop-blur-xl rounded-3xl p-8 border border-slate-700/50 hover:border-slate-600 transition-all shadow-2xl hover:shadow-3xl overflow-hidden"
+            initial={{ opacity: 0, scale: 0.9 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.6, delay: index * 0.1 }}
+            viewport={{ once: true, margin: "0px 0px -25% 0px" }}
           >
-            {/* Hover Effect Layer (CSS-powered) */}
-            <div className="absolute inset-0 bg-gradient-to-br from-blue-500/10 to-cyan-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+            {/* Hover Effect */}
+            <div className="absolute inset-0 bg-gradient-to-br from-blue-400/10 to-cyan-400/10 opacity-0 group-hover:opacity-100 transition-opacity" />
 
             {/* Skill Content */}
             <div className="relative z-10">
-              {/* Icon with Simplified Animation */}
-              <div className="flex justify-center mb-4 text-4xl text-blue-400">
-                {skill.icon}
-              </div>
+              {/* Icon & Progress */}
+              <div className="flex flex-col items-center mb-8">
+                <motion.div
+                  className="p-4 rounded-2xl mb-4"
+                  style={{ background: `${skill.color}20` }}
+                  whileHover={{ rotate: 15, scale: 1.1 }}
+                >
+                  <div className="text-3xl" style={{ color: skill.color }}>
+                    {skill.icon}
+                  </div>
+                </motion.div>
 
-              {/* Title */}
-              <h3 className="text-xl font-bold text-center mb-4 text-slate-800">
-                {skill.title}
-              </h3>
-
-              {/* Simplified Progress Indicator */}
-              <div className="relative w-full mb-6">
-                <div className="relative mx-auto w-28 h-28">
+                {/* Animated Progress */}
+                <div className="relative w-32 h-32">
                   <svg className="w-full h-full" viewBox="0 0 100 100">
-                    <circle
-                      className="text-slate-200"
+                    <path
+                      d="M 50,50 m 0,-45 a 45,45 0 1 1 0,90 a 45,45 0 1 1 0,-90"
                       strokeWidth="8"
-                      stroke="currentColor"
-                      fill="transparent"
-                      r="40"
-                      cx="50"
-                      cy="50"
+                      stroke={skill.color + "20"}
+                      fill="none"
                     />
-                    <motion.circle
-                      className="text-blue-400"
+                    <motion.path
+                      d="M 50,50 m 0,-45 a 45,45 0 1 1 0,90 a 45,45 0 1 1 0,-90"
                       strokeWidth="8"
                       strokeLinecap="round"
-                      stroke="currentColor"
-                      fill="transparent"
-                      r="40"
-                      cx="50"
-                      cy="50"
-                      initial={{ strokeDashoffset: 251 }}
-                      whileInView={{
-                        strokeDashoffset:
-                          251 * (1 - parseInt(skill.width) / 100),
-                      }}
-                      transition={{ duration: 1.2, ease: "easeInOut" }}
-                      strokeDasharray="251"
-                      viewport={{ once: true }}
+                      stroke={skill.color}
+                      fill="none"
+                      initial={{ pathLength: 0 }}
+                      whileInView={{ pathLength: skill.level / 100 }}
+                      transition={{ duration: 1.5, ease: "easeInOut" }}
                     />
                   </svg>
-                  <span className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-lg font-semibold text-blue-400">
-                    {skill.width}
-                  </span>
+                  <div className="absolute inset-0 flex items-center justify-center">
+                    <span
+                      className="text-2xl font-bold"
+                      style={{ color: skill.color }}
+                    >
+                      {skill.level}%
+                    </span>
+                  </div>
                 </div>
               </div>
 
-              {/* Skills Tags (CSS Animations Only) */}
-              <div className="flex flex-wrap justify-center gap-2">
+              {/* Title */}
+              <h3 className="text-xl font-bold text-center mb-6 text-slate-100">
+                {skill.title}
+              </h3>
+
+              {/* Skills Tags */}
+              <div className="flex flex-wrap justify-center gap-3">
                 {skill.skills.split(", ").map((item, idx) => (
-                  <div
+                  <motion.div
                     key={idx}
-                    className="px-3 py-1.5 bg-slate-200/50 rounded-full border border-slate-300 text-slate-700 hover:bg-blue-100 transition-colors text-sm"
+                    className="px-4 py-2 rounded-full bg-slate-700/50 border border-slate-600 backdrop-blur-sm text-slate-300 hover:bg-slate-600/50 transition-all cursor-default text-sm font-medium"
+                    whileHover={{
+                      scale: 1.05,
+                      background: `${skill.color}20`,
+                      borderColor: skill.color,
+                      color: skill.color,
+                    }}
+                    transition={{ duration: 0.2 }}
                   >
                     {item}
-                  </div>
+                  </motion.div>
                 ))}
               </div>
             </div>
+
+            {/* Floating Elements */}
+            <div className="absolute -top-20 -right-20 w-40 h-40 bg-blue-400/10 rounded-full blur-xl" />
+            <div className="absolute -bottom-20 -left-20 w-40 h-40 bg-cyan-400/10 rounded-full blur-xl" />
           </motion.div>
         ))}
       </div>
 
-      {/* Simplified Floating Element */}
-      <motion.div
-        className="absolute top-1/3 left-1/4 w-16 h-16 bg-blue-400/10 backdrop-blur-sm rounded-xl backface-hidden"
-        animate={{
-          y: [-15, 15],
-        }}
-        transition={{
-          duration: 6,
-          repeat: Infinity,
-          repeatType: "mirror",
-        }}
-      />
+      {/* Animated Connector Lines */}
+      <svg className="absolute inset-0 pointer-events-none">
+        {skillsData.map((_, i) => (
+          <motion.path
+            key={i}
+            stroke="url(#gradient)"
+            strokeWidth="2"
+            fill="none"
+            initial={{ pathLength: 0 }}
+            whileInView={{ pathLength: 1 }}
+            transition={{ duration: 1.5, delay: i * 0.2 }}
+          />
+        ))}
+        <defs>
+          <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" stopColor="#60a5fa" />
+            <stop offset="100%" stopColor="#38bdf8" />
+          </linearGradient>
+        </defs>
+      </svg>
     </section>
   );
 };
+
 export default SkillsSection;
