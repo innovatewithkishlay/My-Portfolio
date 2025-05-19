@@ -10,8 +10,8 @@ const Certificates = () => {
         "Successfully completed the NPTEL course on IoT, covering IoT architecture, protocols, applications, and hands-on projects.",
       tags: ["NPTEL", "Completion", "IoT"],
       link: "https://drive.google.com/file/d/1rnXc6F6eRMci-RmdO632mVtKRLFsRHRz/view?usp=drive_link",
-      iconColor: "text-purple-600",
-      buttonColor: "bg-purple-600 hover:bg-purple-700",
+      iconColor: "text-cyan-500",
+      buttonColor: "bg-cyan-600 hover:bg-cyan-700",
     },
     {
       title: "Approximation Algorithms and Linear Programming",
@@ -19,8 +19,8 @@ const Certificates = () => {
         "Successfully completed this course, gaining knowledge of algorithm optimization techniques and linear programming fundamentals.",
       tags: ["Completion", "Course", "Achievement"],
       link: "https://drive.google.com/file/d/1zuilmW466uumvlN-vT1jElBmF1lJRac-/view?usp=drivesdk",
-      iconColor: "text-green-600",
-      buttonColor: "bg-green-600 hover:bg-green-700",
+      iconColor: "text-emerald-500",
+      buttonColor: "bg-emerald-600 hover:bg-emerald-700",
     },
     {
       title: "Generative AI with Large Language Models",
@@ -28,8 +28,8 @@ const Certificates = () => {
         "Completed an advanced AI course, covering LLM architectures, prompt engineering, and practical implementation scenarios.",
       tags: ["Achievement", "Excellence", "Recognition"],
       link: "https://drive.google.com/file/d/1zx36opz-EaGAIopejuuWR7Mxt86F_IpL/view?usp=drivesdk",
-      iconColor: "text-blue-600",
-      buttonColor: "bg-blue-600 hover:bg-blue-700",
+      iconColor: "text-fuchsia-500",
+      buttonColor: "bg-fuchsia-600 hover:bg-fuchsia-700",
     },
     {
       title: "The World of Computer Networking",
@@ -37,8 +37,8 @@ const Certificates = () => {
         "Completed an in-depth course on networking concepts including protocols, OSI layers, and real-world applications.",
       tags: ["Udemy", "Online Learning", "Skill Development"],
       link: "https://drive.google.com/file/d/1MpXLSjROLmMNxphvjKGf1mVtX6RmDzVW/view?usp=drivesdk",
-      iconColor: "text-purple-600",
-      buttonColor: "bg-purple-600 hover:bg-purple-700",
+      iconColor: "text-indigo-500",
+      buttonColor: "bg-indigo-600 hover:bg-indigo-700",
     },
   ];
 
