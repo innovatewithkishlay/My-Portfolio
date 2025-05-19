@@ -1,30 +1,35 @@
-import React from "react";
+import React, { useState } from "react";
 import { motion } from "framer-motion";
 
 const Contact = () => {
-  // Typing animation variants
-  const typingVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        delayChildren: 0.4,
-        staggerChildren: 0.03,
-      },
-    },
-  };
+  const [status, setStatus] = useState("idle"); // idle | success | error
 
-  const letterVariants = {
-    hidden: { opacity: 0, y: 10 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: { type: "spring", stiffness: 200 },
-    },
-  };
+  const handleSubmit = async (e) => {
+    e.preventDefault(); // prevent default form submission
 
-  const introText =
-    "Don't be shy! Feel free to get in touch with me. I'm always open to discussing new projects, creative ideas, or opportunities to be part of your vision.";
+    const form = e.target;
+    const formData = new FormData(form);
+
+    try {
+      const response = await fetch("https://formspree.io/f/meogdozn", {
+        method: "POST",
+        body: formData,
+        headers: {
+          Accept: "application/json",
+        },
+      });
+
+      if (response.ok) {
+        setStatus("success");
+        form.reset();
+      } else {
+        setStatus("error");
+      }
+    } catch (error) {
+      console.error("Form submission error:", error);
+      setStatus("error");
+    }
+  };
 
   return (
     <section
@@ -37,7 +42,6 @@ const Contact = () => {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.2 }}
           className="text-4xl md:text-5xl font-bold text-center mb-16"
-          viewport={{ margin: "0px 0px -25% 0px" }}
         >
           Get In <span className="text-blue-600">Touch</span>
         </motion.h1>
@@ -49,35 +53,13 @@ const Contact = () => {
             initial={{ opacity: 0, x: -50 }}
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, delay: 0.4 }}
-            viewport={{ margin: "0px 0px -25% 0px" }}
           >
             <div className="relative max-w-2xl border-l-4 border-blue-200 pl-6">
-              <motion.div
-                className="text-2xl md:text-3xl font-medium text-gray-800 leading-snug mb-6"
-                variants={typingVariants}
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ margin: "0px 0px -25% 0px" }}
-              >
-                {introText.split(" ").map((word, wordIndex) => (
-                  <span
-                    key={wordIndex}
-                    className="inline-block whitespace-nowrap mr-2"
-                  >
-                    {word.split("").map((char, charIndex) => (
-                      <motion.span
-                        key={charIndex}
-                        className="inline-block"
-                        variants={letterVariants}
-                      >
-                        {char}
-                      </motion.span>
-                    ))}
-                    {/* Add non-breaking space after each word */}
-                    {wordIndex !== introText.split(" ").length - 1 && "\u00A0"}
-                  </span>
-                ))}
-              </motion.div>
+              <p className="text-2xl md:text-3xl font-medium text-gray-800 leading-snug mb-6">
+                Don't be shy! Feel free to get in touch with me. I'm always open
+                to discussing new projects, creative ideas, or opportunities to
+                be part of your vision.
+              </p>
             </div>
           </motion.div>
 
@@ -87,91 +69,64 @@ const Contact = () => {
             initial={{ opacity: 0, scale: 0.95 }}
             whileInView={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            viewport={{ margin: "0px 0px -25% 0px" }}
           >
-            <form
-              action="https://formspree.io/f/meogdozn"
-              method="POST"
-              className="space-y-6"
-              acceptCharset="UTF-8"
-            >
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <motion.div
-                  whileHover={{ scale: 1.02 }}
-                  whileTap={{ scale: 0.98 }}
-                >
+            {status === "success" ? (
+              <div className="text-green-600 font-medium text-lg text-center">
+                ✅ Your message has been sent. We’ll contact you soon!
+              </div>
+            ) : status === "error" ? (
+              <div className="text-red-600 font-medium text-lg text-center">
+                ❌ Something went wrong. Please try again later.
+              </div>
+            ) : (
+              <form onSubmit={handleSubmit} className="space-y-6">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <input
                     type="text"
                     name="First Name"
-                    className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
                     placeholder="First Name"
                     required
+                    className="w-full px-4 py-3 border border-gray-200 rounded-lg"
                   />
-                </motion.div>
-
-                <motion.div
-                  whileHover={{ scale: 1.02 }}
-                  whileTap={{ scale: 0.98 }}
-                >
                   <input
                     type="text"
                     name="Last Name"
-                    className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
                     placeholder="Last Name"
                     required
+                    className="w-full px-4 py-3 border border-gray-200 rounded-lg"
                   />
-                </motion.div>
-              </div>
-
-              <motion.div
-                whileHover={{ scale: 1.02 }}
-                whileTap={{ scale: 0.98 }}
-              >
+                </div>
                 <input
                   type="email"
                   name="Email"
-                  className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
                   placeholder="Your Email"
                   required
+                  className="w-full px-4 py-3 border border-gray-200 rounded-lg"
                 />
-              </motion.div>
-
-              <motion.div
-                whileHover={{ scale: 1.02 }}
-                whileTap={{ scale: 0.98 }}
-              >
                 <input
                   type="text"
                   name="Subject"
-                  className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
                   placeholder="Subject"
                   required
+                  className="w-full px-4 py-3 border border-gray-200 rounded-lg"
                 />
-              </motion.div>
-
-              <motion.div
-                whileHover={{ scale: 1.02 }}
-                whileTap={{ scale: 0.98 }}
-              >
                 <textarea
                   name="Message"
-                  className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
                   placeholder="Your Message"
                   rows="4"
                   required
+                  className="w-full px-4 py-3 border border-gray-200 rounded-lg"
                 />
-              </motion.div>
-
-              <motion.button
-                type="submit"
-                className="w-full py-3.5 bg-gradient-to-r from-blue-600 to-blue-500 text-white font-semibold rounded-lg shadow-md hover:shadow-lg transition-all"
-                whileHover={{ scale: 1.02 }}
-                whileTap={{ scale: 0.95 }}
-                transition={{ type: "spring", stiffness: 300 }}
-              >
-                Send Message
-              </motion.button>
-            </form>
+                <motion.button
+                  type="submit"
+                  className="w-full py-3.5 bg-blue-600 text-white font-semibold rounded-lg"
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.95 }}
+                >
+                  Send Message
+                </motion.button>
+              </form>
+            )}
           </motion.div>
         </div>
       </div>
