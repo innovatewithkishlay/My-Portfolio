@@ -10,7 +10,6 @@ import {
 
 const Achievements = () => {
   const achievements = [
-    // ... keep your existing achievements array ...
     {
       title: "Hack-A-Throne 2024 by AIESEC",
       description:
